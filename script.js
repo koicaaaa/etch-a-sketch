@@ -1,8 +1,10 @@
 const DEFAULT_COLOR = "#000000";
 const DEFAULT_MODE = "color";
+const DEFAULT_SIZE = "16";
 
 let currentColor = DEFAULT_COLOR;
 let currentMode = DEFAULT_MODE;
+let currentSize = DEFAULT_SIZE;
 
 const container = document.querySelector(".gridContainer");
 const resize = document.querySelector("#resize");
@@ -16,8 +18,7 @@ document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
 reset.addEventListener("click", resetGrid);
-resize.addEventListener("click", () => {
-    setCurrentMode("resize"); })
+resize.addEventListener("click", setSize);
 colorPicker.oninput = (e) => setCurrentColor(e.target.value);
 rainbow.addEventListener("click", () => {
     setCurrentMode("rainbow"); });
@@ -30,6 +31,25 @@ function setCurrentColor(newColor) {
 
 function setCurrentMode(newMode) {
     currentMode = newMode;
+}
+
+function setCurrentSize(newSize) {
+    currentSize = newSize;
+}
+
+function setSize() {
+    let newSize = prompt("What size? ");
+    setCurrentSize(newSize);
+    reloadGrid();
+}
+
+function reloadGrid() {
+    clearGrid();
+    createGrid(currentSize);
+}
+
+function clearGrid() {
+    container.innerHTML = "";
 }
 
 function createGrid(input) {
@@ -73,4 +93,6 @@ function resetGrid() {
 }
 
 
-createGrid(64);
+window.onload = () => {
+    createGrid(16);
+}
