@@ -20,6 +20,7 @@ document.body.onmouseup = () => (mouseDown = false);
 reset.addEventListener("click", resetGrid);
 resize.addEventListener("click", setSize);
 colorPicker.oninput = (e) => setCurrentColor(e.target.value);
+colorPicker.addEventListener("click", () => setCurrentMode("color"));
 rainbow.addEventListener("click", () => {
     setCurrentMode("rainbow"); });
 erase.addEventListener("click", () => {
