@@ -1,10 +1,18 @@
 body {
     font-family: Verdana, sans-serif;
     font-size: 20px;
+    background-color: rgb(245, 242, 242);
 }
 
 #title {
     text-align: center;
+}
+
+button {
+    font-family: Verdana, sans-serif;
+    font-size: 11px;
+    padding: 10px;
+    font-weight: 800;
 }
 
 .buttons {
@@ -14,9 +22,45 @@ body {
     margin: 15px;
 }
 
+#resize {
+    border-radius: 30px;
+    border-color: silver;
+    color: rgb(22, 22, 80);
+}
+
+#rainbow {
+    border-radius: 30px;
+    border-color: silver;
+    color: rgb(35, 110, 57);
+}
+
+#erase {
+    border-radius: 30px;
+    border-color: silver;
+    color: rgb(97, 44, 97);
+}
+
+#reset {
+    border-radius: 30px;
+    border-color: silver;
+    color: rgb(151, 113, 43);
+}
+
+input[type='color'] {
+    border: 10px;
+    margin: 10px;
+    border-radius: 50px;
+    border-color: silver;
+    background-color: transparent;
+  }
+
+input[type='color']::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
 input[type='color']::-webkit-color-swatch {
     border: none;
-    border-radius: 50px;
+    border-radius: 500px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 
