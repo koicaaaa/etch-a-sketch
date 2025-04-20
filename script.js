@@ -1,12 +1,13 @@
 const DEFAULT_COLOR = "#000000";
+const DEFAULT_MODE = "color";
 
 let currentColor = DEFAULT_COLOR;
+let currentMode = DEFAULT_MODE;
 
 const container = document.querySelector(".gridContainer");
 const resize = document.querySelector("#resize");
 const colorPicker = document.querySelector("#color");
 const rainbow = document.querySelector("#rainbow");
-const opacity = document.querySelector("#opacity");
 const erase = document.querySelector("#erase");
 const reset = document.querySelector("#reset");
 
@@ -15,10 +16,20 @@ document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
 reset.addEventListener("click", resetGrid);
+resize.addEventListener("click", () => {
+    setCurrentMode("resize"); })
 colorPicker.oninput = (e) => setCurrentColor(e.target.value);
+rainbow.addEventListener("click", () => {
+    setCurrentMode("rainbow"); });
+erase.addEventListener("click", () => {
+    setCurrentMode("erase"); });
 
 function setCurrentColor(newColor) {
     currentColor = newColor;
+}
+
+function setCurrentMode(newMode) {
+    currentMode = newMode;
 }
 
 function createGrid(input) {
@@ -35,9 +46,23 @@ function createGrid(input) {
 }
 
 function colorGrid(e) {
-    if (e.type === 'mouseover' && !mouseDown) {return}
-    else {
-    this.style.backgroundColor = currentColor; }
+    if (e.type === "mouseover" && !mouseDown) {
+        return
+    }
+    if (currentMode === "rainbow") {
+        const num1 = Math.floor(Math.random() * 256);
+        const num2 = Math.floor(Math.random() * 256);
+        const num3 = Math.floor(Math.random() * 256);
+
+        currentColor = `rgba(${num1}, ${num2}, ${num3})`;
+        e.target.style.backgroundColor = currentColor;
+    }
+    else if (currentMode === "erase") {
+        e.target.style.backgroundColor = "#FFFFFF";
+    }
+    else if (currentMode === "color") {
+        e.target.style.backgroundColor = currentColor;
+    }
 }
 
 function resetGrid() {
@@ -48,6 +73,4 @@ function resetGrid() {
 }
 
 
-
-
-createGrid(16);
+createGrid(64);

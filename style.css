@@ -10,7 +10,7 @@ body {
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 45px;
+    gap: 75px;
     margin: 15px;
 }
 
